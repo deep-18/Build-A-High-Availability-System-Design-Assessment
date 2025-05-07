@@ -7,5 +7,6 @@
     - prerequisits
     - kubectl
     - helm
-    - kubenx-ns
+    - kube-shell
     - terraform
+    - jenkins

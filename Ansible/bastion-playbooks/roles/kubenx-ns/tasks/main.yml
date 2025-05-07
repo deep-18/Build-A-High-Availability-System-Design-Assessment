@@ -1,8 +1,0 @@
-- name: Copy bash script to server
-  copy:
-    src: install.sh
-    dest: /opt/install-kubens.sh
-    mode: '0777'
-
-- name: execute bash script on server
-  shell: bash /opt/install-kubens.sh

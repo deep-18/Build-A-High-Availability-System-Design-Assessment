@@ -4,5 +4,5 @@
   roles:
     - prerequisits
     - kubectl
-    # - kube-shell
+    - kube-shell
     - helm
