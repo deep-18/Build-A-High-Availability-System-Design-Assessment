@@ -1,0 +1,4 @@
+- hosts: bastionhost
+  roles:
+    - kubenx-ns
+    # - kubectl-tree

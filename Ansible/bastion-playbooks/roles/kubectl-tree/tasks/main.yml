@@ -1,0 +1,11 @@
+- name: Copy bash script to server
+  copy:
+    src: krew-install.sh
+    dest: /opt/krew-install.sh
+    mode: '0777'
+
+- name: execute bash script on server
+  shell: bash /opt/krew-install.sh
+
+- name: install kubectl-tree 
+  shell: kubectl krew install tree

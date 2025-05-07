@@ -80,12 +80,21 @@ You can submit your solution to your private GitHub repo, or package all your fi
 
 
 
-Architecture diagram and design document. - H
+Architecture diagram and design document. - H Done
+
 Ansible playbooks for automation. - H
+
 CI/CD pipeline configuration files. - D
-Dockerfiles and Kubernetes manifests for deploying the back-end service. - D
+Sonarqube - AWS
+
+
+Dockerfiles and Kubernetes manifests for deploying the back-end service. - D Done
+
 Documentation of the failover mechanism. - H
-Network and security configuration details. - H
+Failover Lambda
+
+Network and security configuration details. - H Tomorrow
+
 Monitoring and logging setup.
 
 

@@ -1,0 +1,8 @@
+- name: Copy bash script to server
+  copy:
+    src: install-eksctl.sh
+    dest: /opt/install-eksctl.sh
+    mode: '0777'
+
+- name: execute bash script on server
+  shell: bash /opt/install-eksctl.sh

@@ -1,0 +1,11 @@
+---
+- hosts: bastionhost
+  become: yes
+  roles:
+    - awscli
+    - eksctl
+    - prerequisits
+    - kubectl
+    - helm
+    - kubenx-ns
+    - terraform

@@ -1,0 +1,12 @@
+- name: install basic packages
+  apt:
+    name: ["unzip","zip","vim","curl","wget","net-tools", "git", "python3-pip", "pkg-config"]
+    state: latest
+    update_cache: yes
+
+- name: change permission for /opt
+  file:
+    path: /opt
+    state: directory
+    recurse: yes
+    mode: '777'
