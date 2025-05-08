@@ -90,12 +90,12 @@ Sonarqube - AWS
 
 Dockerfiles and Kubernetes manifests for deploying the back-end service. - D Done
 
-Documentation of the failover mechanism. - H
+Documentation of the failover mechanism. - H Done
 Failover Lambda
 
 Network and security configuration details. - H Tomorrow
 
-Monitoring and logging setup.
+Monitoring and logging setup. - Done, Used Helm
 
 
 
