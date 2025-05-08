@@ -8,37 +8,3 @@
   apt:
     name: awscli
     state: present
-
-# - name: Copying Kubernetes to the bastion host.
-#   copy:
-#     src: ../Kubernetes
-#     dest: /home/admin
-
-# - name: creating directory for helm chart and its config files
-#   file:
-#     path: /home/admin/helm_deployment
-#     state: directory
-    
-# - name: Copying Kuberntes to the bastionhost.
-#   copy:
-#     src: ../../save_yaml
-#     dest: /home/admin/helm_deployment
-
-# - name: Copying deployer files 
-#   copy: src={{ item.src }} dest={{ item.dest }}
-#   with_items: 
-#     - { src: '../../dashboard_nginx_ssl_setup', dest: '/home/admin'}
-#     - { src: '../../ams', dest: '/home/admin/helm_deployment'}
-#     - { src: '../../EBS_name.sh', dest: '/home/admin/helm_deployment'}
-#     - { src: '../../controller.yaml', dest: '/home/admin/helm_deployment'}
-#     - { src: '../../network-policy.yaml', dest: '/home/admin/helm_deployment'}
-    
-# - name: Make Files Executable
-#   file:
-#     path: "{{ item }}"
-#     mode: 0777
-#     recurse: yes
-#   with_items: 
-#     - /home/admin/Kubernetes
-#     - /home/admin/helm_deployment
-

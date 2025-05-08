@@ -82,7 +82,7 @@ You can submit your solution to your private GitHub repo, or package all your fi
 
 Architecture diagram and design document. - H Done
 
-Ansible playbooks for automation. - H
+Ansible playbooks for automation. - H Done
 
 CI/CD pipeline configuration files. - D
 Sonarqube - AWS
@@ -100,3 +100,6 @@ Monitoring and logging setup.
 
 
 Ansible - Installation of Sonar Qube, Jenkins and all that through ansible
+
+
+ssh-keygen -t rsa

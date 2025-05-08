@@ -1,27 +1,54 @@
 - name: Update APT package manager repositories cache
-  become: true
   apt:
     update_cache: yes
-- name: Install OpenJDK Java
-  become: yes
+
+- name: Install required dependencies (Java and GPG tools)
   apt:
-    name: [gnupg, gnupg2, gnupg1, default-jre, default-jdk]
+    name:
+      - gnupg
+      - gnupg2
+      - gnupg1
+      - default-jre
+      - default-jdk
     state: present
-- name: download jenkins bin
-  shell: wget -qO - https://pkg.jenkins.io/debian-stable/jenkins.io.key | sudo apt-key add -
-- name: run the bin file
-  shell: sudo sh -c 'echo deb http://pkg.jenkins.io/debian-stable binary/ > /etc/apt/sources.list.d/jenkins.list'
+
+- name: Download Jenkins GPG key
+  get_url:
+    url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
+    dest: /usr/share/keyrings/jenkins-keyring.asc
+    mode: '0644'
+
+- name: Add Jenkins apt repository securely
+  apt_repository:
+    repo: "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/"
+    state: present
+    filename: jenkins
+
 - name: Update APT package manager repositories cache
-  become: true
   apt:
     update_cache: yes
-- name : install jenkins
-  become: yes
+
+# - name: Add Jenkins repository key
+#   ansible.builtin.apt_key:
+#     url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
+#     state: present
+
+# - name: Add Jenkins apt repository
+#   ansible.builtin.apt_repository:
+#     repo: 'deb http://pkg.jenkins.io/debian-stable binary/'
+#     state: present
+
+# - name: Update APT package manager repositories cache again
+#   apt:
+#     update_cache: yes
+
+- name: Install Jenkins
   apt:
     name: jenkins
     state: present
-- name: start and enable jenkins server
-  become: yes
+
+- name: Start and enable Jenkins service
   service:
     name: jenkins
     state: started
+    enabled: yes
