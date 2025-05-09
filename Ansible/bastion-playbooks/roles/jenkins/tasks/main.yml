@@ -1,54 +1,30 @@
-- name: Update APT package manager repositories cache
-  apt:
-    update_cache: yes
-
-- name: Install required dependencies (Java and GPG tools)
-  apt:
-    name:
-      - gnupg
-      - gnupg2
-      - gnupg1
-      - default-jre
-      - default-jdk
+- name: Ensure Java is installed (Amazon Linux 2)
+  yum:
+    name: java-17-amazon-corretto
     state: present
+  become: true
 
-- name: Download Jenkins GPG key
+- name: Add Jenkins repo
   get_url:
-    url: https://pkg.jenkins.io/debian-stable/jenkins.io-2023.key
-    dest: /usr/share/keyrings/jenkins-keyring.asc
-    mode: '0644'
+    url: http://pkg.jenkins.io/redhat-stable/jenkins.repo
+    dest: /etc/yum.repos.d/jenkins.repo
+  become: true
 
-- name: Add Jenkins apt repository securely
-  apt_repository:
-    repo: "deb [signed-by=/usr/share/keyrings/jenkins-keyring.asc] https://pkg.jenkins.io/debian-stable binary/"
+- name: Import Jenkins GPG key
+  rpm_key:
+    key: https://pkg.jenkins.io/redhat-stable/jenkins.io-2023.key
     state: present
-    filename: jenkins
-
-- name: Update APT package manager repositories cache
-  apt:
-    update_cache: yes
-
-# - name: Add Jenkins repository key
-#   ansible.builtin.apt_key:
-#     url: https://pkg.jenkins.io/debian-stable/jenkins.io.key
-#     state: present
-
-# - name: Add Jenkins apt repository
-#   ansible.builtin.apt_repository:
-#     repo: 'deb http://pkg.jenkins.io/debian-stable binary/'
-#     state: present
-
-# - name: Update APT package manager repositories cache again
-#   apt:
-#     update_cache: yes
+  become: true
 
 - name: Install Jenkins
-  apt:
+  yum:
     name: jenkins
     state: present
+  become: true
 
-- name: Start and enable Jenkins service
-  service:
+- name: Enable and start Jenkins service
+  systemd:
     name: jenkins
+    enabled: true
     state: started
-    enabled: yes
+  become: true
