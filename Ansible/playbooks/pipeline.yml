@@ -1,0 +1,9 @@
+---
+- hosts: jenkinhost
+  become: yes
+  roles:
+    - jenkins
+    - SonarQube
+
+
+# This files contains the configurations of Pipeline server.

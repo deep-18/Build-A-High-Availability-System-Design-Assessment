@@ -1,0 +1,40 @@
+- name: Install Docker
+  package:
+    name: docker
+    state: present
+  become: true
+
+- name: Ensure Docker service is running
+  service:
+    name: docker
+    state: started
+    enabled: true
+  become: true
+
+- name: Add ec2-user to docker group
+  user:
+    name: ec2-user
+    groups: docker
+    append: yes
+  become: true
+
+- name: Pull SonarQube Docker image
+  community.docker.docker_image:
+    name: sonarqube
+    tag: latest
+    source: pull
+  become: true
+
+- name: Run SonarQube container
+  community.docker.docker_container:
+    name: sonarqube
+    image: sonarqube:latest
+    state: started
+    restart_policy: always
+    ports:
+      - "9000:9000"
+    volumes:
+      - sonarqube_data:/opt/sonarqube/data
+      - sonarqube_extensions:/opt/sonarqube/extensions
+      - sonarqube_logs:/opt/sonarqube/logs
+  become: true

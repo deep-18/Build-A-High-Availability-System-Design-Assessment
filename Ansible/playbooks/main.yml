@@ -7,5 +7,7 @@
     - prerequisits
     - kubectl
     - helm
-    - kube-shell
     - terraform
+
+
+# This files contains the configurations of Bastionhost server.

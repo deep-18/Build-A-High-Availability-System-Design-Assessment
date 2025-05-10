@@ -1,5 +1,0 @@
----
-- hosts: jenkinhost
-  become: yes
-  roles:
-    - jenkins

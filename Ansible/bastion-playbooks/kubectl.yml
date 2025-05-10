@@ -1,8 +1,0 @@
----
-- hosts: bastionhost
-  become: yes
-  roles:
-    - prerequisits
-    - kubectl
-    - kube-shell
-    - helm
